@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bakinou-24.github.io/ecusoft-catalog/sitemap.xml
