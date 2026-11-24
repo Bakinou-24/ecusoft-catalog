@@ -1,5 +1,9 @@
 # نشر الكتالوج أونلاين
 
+**الموقع منشور ويعمل الآن:** https://bakinou-24.github.io/ecusoft-catalog/
+
+المستودع: https://github.com/Bakinou-24/ecusoft-catalog (عام، Pages مفعّل من الفرع `main`، المجلد `/`).
+
 مجلد `site/` جاهز للنشر كما هو. انسخ **محتويات** المجلد (وليس المجلد نفسه).
 
 ## GitHub Pages — فرع `gh-pages`
