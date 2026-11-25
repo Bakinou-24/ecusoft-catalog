@@ -12,7 +12,7 @@
 
   var I18N = {
     ar: {
-      navHome: 'الرئيسية', navCatalog: 'الكتالوج', navFeatures: 'لماذا ECUsoft', navPayment: 'الدفع', navContact: 'تواصل معنا', navWhatsapp: 'واتساب', navTerms: 'الشروط', navRefund: 'الاسترجاع', navPrivacy: 'الخصوصية',
+      navHome: 'الرئيسية', navCatalog: 'الكتالوج', navFeatures: 'لماذا ECUsoft', navContact: 'تواصل معنا', navWhatsapp: 'واتساب', navTerms: 'الشروط', navRefund: 'الاسترجاع', navPrivacy: 'الخصوصية',
       orderNow: 'اطلب الآن', menu: 'القائمة', switchLanguage: 'تغيير اللغة', navAria: 'التنقل الرئيسي', searchAria: 'البحث في الكتالوج',
       themeToLight: 'التبديل إلى الوضع الفاتح', themeToDark: 'التبديل إلى الوضع الداكن',
       pageTitle: 'ECUsoft | كتالوج برمجيات السيارات والشاحنات',
@@ -34,29 +34,22 @@
       feature2Title: 'طلب خلال دقائق', feature2Text: 'اضغط زر واتساب وأرسل اسم البرنامج، وسنرد لك بتفاصيل التوفر والسعر.',
       feature3Title: 'دعم التركيب', feature3Text: 'مساعدة عن بُعد عبر TeamViewer أو AnyDesk للبرامج التي تحتاج إعداداً.',
       ctaKicker: 'Order / 03', ctaTitle: 'تحتاج برنامجاً غير موجود؟',
-      ctaText: 'أرسل لنا اسم البرنامج أو صورة الواجهة التي تبحث عنها وسنساعدك في إيجاده وتأكيد التوفر قبل الدفع.',
+      ctaText: 'أرسل لنا اسم البرنامج أو صورة الواجهة التي تبحث عنها وسنساعدك في إيجاده وتأكيد التوفر قبل الطلب.',
       ctaButton: 'تواصل معنا الآن', footerCopy: '© ECUsoft — كتالوج برمجيات السيارات', footerPermalink: 'الرابط الدائم',
       details: 'التفاصيل', productOne: 'منتج', productMany: 'منتج',
       screenshot: 'لقطة شاشة', screenshots: 'لقطات شاشة',
       metaImages: 'عدد الصور', metaCategory: 'التصنيف', metaFolder: 'المرجع', metaOrder: 'الطلب', metaViaWhatsapp: 'عبر واتساب',
       modalOrderButton: 'اطلب هذا البرنامج عبر واتساب', modalImageAlt: 'صورة المنتج',
       close: 'إغلاق', prev: 'الصورة السابقة', next: 'الصورة التالية', orderBarLabel: 'اطلب عبر واتساب',
-      payKicker: 'الدفع / 03', payTitle: 'ادفع عبر MoonPay واستلم كريبتو',
-      payText: 'رابط دفع مستضاف وآمن لمنتج محدد. إتمام العملية يتم بالكامل لدى MoonPay، ولا تُخزّن أي بيانات بطاقة أو تسجيل دخول في هذا الموقع.',
-      payReady: 'روابط الدفع',
-      pay1Title: 'صفحة دفع مستضافة', pay1Text: 'الدفع يتم لدى MoonPay على صفحة منفصلة. إن كان خيار البطاقة مفعّلاً في حساب البائع فسيظهر هناك، ولا يمرّ أي رقم بطاقة عبر كتالوج ECUsoft.',
-      pay2Title: 'استلام USDC', pay2Text: 'يستلم البائع العملة على شبكة Base أو Polygon، ويمكن تحويلها لاحقاً إلى USDT TRC20 عبر منصة صرف. شبكة Tron (TRC20) غير متاحة في صفحة الدفع الحالية.',
-      pay3Title: 'بدون PayPal أو Revolut', pay3Text: 'لا نستخدم PayPal ولا Revolut كوسيلة دفع. الأسعار المعروضة بالدولار واليورو للإرشاد، والمبلغ النهائي المعتمد هو ما يظهر في صفحة الدفع.',
-      payNoteTitle: 'قبل الدفع:', payNoteText: 'الرابط الحالي يعرض $45 USDC على شبكة Solana ولا يحتوي خيار بطاقة بعد. بعد تفعيل Card payments في لوحة MoonPay واستلام رابط جديد سيظهر زر الدفع بالبطاقة تلقائياً. تأكد دائماً من اسم المنتج والمبلغ، ثم أرسل الإيصال على واتساب لتأكيد التفعيل يدوياً.',
-      cardPay: 'ادفع عبر MoonPay', modalPayButton: 'افتح صفحة الدفع', checkoutLoading: 'جارٍ تجهيز الدفع…', priceLabel: 'السعر', approximate: 'تقريباً',
-      legalKicker: 'Legal / 04', legalTitle: 'الشروط والسياسات', legalText: 'معلومات واضحة قبل إتمام الطلب أو الدفع.',
-      termsTitle: 'شروط البيع', termsText: 'البرمجيات تُستخدم وفق ترخيصها الأصلي. يرجى التأكد من توافق الإصدار مع معداتك قبل الطلب. يتم تأكيد التوفر والتفعيل يدوياً عبر واتساب بعد الدفع.',
-      refundTitle: 'الاسترجاع', refundText: 'لا استرجاع بعد تسليم ملفات التفعيل أو المفاتيح، إلا في حال ثبوت عدم تطابق المنتج مع ما تم الاتفاق عليه كتابياً عبر واتساب قبل الدفع.',
-      privacyTitle: 'الخصوصية', privacyText: 'هذا الموقع ثابت ولا يجمع بيانات بطاقات أو معلومات تسجيل دخول. تفضيلات اللغة والثيم تُحفظ محلياً في متصفحك فقط. الدفع يتم بالكامل لدى مزوّد الدفع.',
+      priceLabel: 'السعر', approximate: 'تقريباً',
+      legalKicker: 'Legal / 03', legalTitle: 'الشروط والسياسات', legalText: 'معلومات واضحة قبل إتمام الطلب.',
+      termsTitle: 'شروط البيع', termsText: 'البرمجيات تُستخدم وفق ترخيصها الأصلي. يرجى التأكد من توافق الإصدار مع معداتك قبل الطلب. يتم تأكيد التوفر والتفعيل يدوياً عبر واتساب بعد الطلب.',
+      refundTitle: 'الاسترجاع', refundText: 'لا استرجاع بعد تسليم ملفات التفعيل أو المفاتيح، إلا في حال ثبوت عدم تطابق المنتج مع ما تم الاتفاق عليه كتابياً عبر واتساب قبل الطلب.',
+      privacyTitle: 'الخصوصية', privacyText: 'هذا الموقع ثابت ولا يجمع أي بيانات شخصية. تفضيلات اللغة والثيم تُحفظ محلياً في متصفحك فقط.',
       tagMap: { 'أونلاين': 'Online', 'Windows': 'Windows', 'محدّث': 'Updated', 'دعم عن بُعد': 'Remote support', 'شاحنات': 'Trucks', 'كتالوج': 'Catalog', 'واتساب': 'WhatsApp' }
     },
     en: {
-      navHome: 'Home', navCatalog: 'Catalog', navFeatures: 'Why ECUsoft', navPayment: 'Payment', navContact: 'Contact', navWhatsapp: 'WhatsApp', navTerms: 'Terms', navRefund: 'Refund', navPrivacy: 'Privacy',
+      navHome: 'Home', navCatalog: 'Catalog', navFeatures: 'Why ECUsoft', navContact: 'Contact', navWhatsapp: 'WhatsApp', navTerms: 'Terms', navRefund: 'Refund', navPrivacy: 'Privacy',
       orderNow: 'Order now', menu: 'Menu', switchLanguage: 'Change language', navAria: 'Main navigation', searchAria: 'Search catalog',
       themeToLight: 'Switch to light theme', themeToDark: 'Switch to dark theme',
       pageTitle: 'ECUsoft | Automotive Software Catalog',
@@ -78,33 +71,25 @@
       feature2Title: 'Request in minutes', feature2Text: 'Tap the WhatsApp button, send the program name and we will reply with availability and price.',
       feature3Title: 'Installation support', feature3Text: 'Remote help via TeamViewer or AnyDesk for software that needs setup.',
       ctaKicker: 'Order / 03', ctaTitle: 'Need a program that is not listed?',
-      ctaText: 'Send us the program name or a screenshot of the interface you are looking for and we will help you find it and confirm availability before payment.',
+      ctaText: 'Send us the program name or a screenshot of the interface you are looking for and we will help you find it and confirm availability before ordering.',
       ctaButton: 'Contact us now', footerCopy: '© ECUsoft — Automotive Software Catalog', footerPermalink: 'Permalink',
       details: 'Details', productOne: 'product', productMany: 'products',
       screenshot: 'screenshot', screenshots: 'screenshots',
       metaImages: 'Screenshots', metaCategory: 'Category', metaFolder: 'Reference', metaOrder: 'Order', metaViaWhatsapp: 'Via WhatsApp',
       modalOrderButton: 'Order this program on WhatsApp', modalImageAlt: 'Product screenshot',
       close: 'Close', prev: 'Previous image', next: 'Next image', orderBarLabel: 'Order on WhatsApp',
-      payKicker: 'Payment / 03', payTitle: 'Pay via MoonPay, receive crypto',
-      payText: 'A secure hosted checkout for one specific product. The whole flow happens at MoonPay; no card data or login details are stored on this site.',
-      payReady: 'Pay links',
-      pay1Title: 'Hosted checkout', pay1Text: 'Payment happens on a separate MoonPay page. If card payments are enabled in the seller account, the option will appear there; no card number passes through the ECUsoft catalog.',
-      pay2Title: 'Receive USDC', pay2Text: 'The seller receives the funds on Base or Polygon and can convert them later to USDT TRC20 through an exchange. The Tron (TRC20) network is not available on the current checkout.',
-      pay3Title: 'No PayPal or Revolut', pay3Text: 'We do not use PayPal or Revolut as a payment method. USD and EUR prices are indicative; the final amount is the one shown on the checkout page.',
-      payNoteTitle: 'Before you pay:', payNoteText: 'The current link shows $45 USDC on Solana and does not offer a card option yet. After Card payments is enabled in MoonPay and a new link is provided, the card button will appear automatically. Always check the product name and amount, then send the receipt on WhatsApp for manual activation.',
-      cardPay: 'Pay via MoonPay', modalPayButton: 'Open checkout', checkoutLoading: 'Preparing checkout…', priceLabel: 'Price', approximate: 'approx.',
-      legalKicker: 'Legal / 04', legalTitle: 'Terms & policies', legalText: 'Clear information before you order or pay.',
-      termsTitle: 'Terms of sale', termsText: 'Software is used under its original licence. Please confirm the version works with your equipment before ordering. Availability and activation are confirmed manually on WhatsApp after payment.',
-      refundTitle: 'Refunds', refundText: 'No refund after activation files or keys are delivered, unless the product does not match what was agreed in writing on WhatsApp before payment.',
-      privacyTitle: 'Privacy', privacyText: 'This is a static site and collects no card data or login details. Language and theme preferences are stored only in your browser. Payment is handled entirely by the payment provider.',
+      priceLabel: 'Price', approximate: 'approx.',
+      legalKicker: 'Legal / 03', legalTitle: 'Terms & policies', legalText: 'Clear information before you order.',
+      termsTitle: 'Terms of sale', termsText: 'Software is used under its original licence. Please confirm the version works with your equipment before ordering. Availability and activation are confirmed manually on WhatsApp after ordering.',
+      refundTitle: 'Refunds', refundText: 'No refund after activation files or keys are delivered, unless the product does not match what was agreed in writing on WhatsApp before ordering.',
+      privacyTitle: 'Privacy', privacyText: 'This is a static site and collects no personal data. Language and theme preferences are stored only in your browser.',
       tagMap: { 'أونلاين': 'Online', 'Windows': 'Windows', 'محدّث': 'Updated', 'دعم عن بُعد': 'Remote support', 'شاحنات': 'Trucks', 'كتالوج': 'Catalog', 'واتساب': 'WhatsApp' }
     }
   };
 
   var whatsapp = config.whatsapp || 'https://wa.me/message/WT6UZTLFOUE5E1';
   var categories = Array.isArray(config.categories) ? config.categories : [{ key: 'all', labelAr: 'الكل', labelEn: 'All', icon: 'grid' }];
-  var payment = config.payment || {};
-  var eurRate = Number(payment.eurRate) > 0 ? Number(payment.eurRate) : 0.92;
+  var eurRate = Number(config.eurRate) > 0 ? Number(config.eurRate) : 0.92;
 
   var grid = document.getElementById('productGrid');
   var chips = document.getElementById('categoryChips');
@@ -122,8 +107,6 @@
   var modalMeta = document.getElementById('modalMeta');
   var modalThumbs = document.getElementById('modalThumbs');
   var modalPrice = document.getElementById('modalPrice');
-  var modalCheckout = document.getElementById('modalCheckout');
-  var modalPay = document.getElementById('modalPay');
   var modalOrder = document.getElementById('modalOrder');
   var langToggle = document.getElementById('langToggle');
   var themeToggle = document.getElementById('themeToggle');
@@ -137,8 +120,6 @@
   var currentImage = 0;
   var currentLang = 'ar';
   var currentTheme = 'dark';
-  var checkoutProductId = '';
-  var checkoutLoading = null;
 
   function store(key, value) {
     try {
@@ -219,66 +200,6 @@
       '<span>' + esc(t('approximate')) + ' ' + esc(eurPrice(product)) + '</span></div>';
   }
 
-  function paylinkIdFromUrl(url) {
-    try {
-      var parts = new URL(String(url || '')).pathname.split('/').filter(Boolean);
-      return parts[parts.length - 1] || '';
-    } catch (e) { return ''; }
-  }
-
-  function cardCheckoutEnabled() {
-    return payment.cardEnabled === true;
-  }
-
-  function loadCheckoutScript() {
-    if (typeof window.helioCheckout === 'function') return Promise.resolve();
-    if (checkoutLoading) return checkoutLoading;
-    var src = payment.embedScript || 'https://embed.hel.io/assets/index-v1.js';
-    // Only the official MoonPay embed URL may ever be injected into this page.
-    if (src !== 'https://embed.hel.io/assets/index-v1.js') return Promise.reject(new Error('Unsupported checkout script'));
-    checkoutLoading = new Promise(function (resolve, reject) {
-      var script = document.createElement('script');
-      script.src = src;
-      script.async = true;
-      script.onload = function () { checkoutLoading = null; resolve(); };
-      script.onerror = function () { checkoutLoading = null; reject(new Error('Checkout script failed to load')); };
-      document.head.appendChild(script);
-    });
-    return checkoutLoading;
-  }
-
-  function resetCheckout() {
-    checkoutProductId = '';
-    if (!modalCheckout) return;
-    modalCheckout.hidden = true;
-    modalCheckout.innerHTML = '';
-    modalCheckout.removeAttribute('data-mounted');
-  }
-
-  function mountCheckout(payUrl) {
-    if (!modalCheckout || !payUrl) return;
-    var id = paylinkIdFromUrl(payUrl) || payment.paylinkId || '';
-    if (!id) return;
-    modalCheckout.hidden = false;
-    if (modalCheckout.getAttribute('data-mounted') === 'true') return;
-    modalCheckout.innerHTML = '<span class="checkout-loading">' + esc(t('checkoutLoading')) + '</span>';
-    loadCheckoutScript().then(function () {
-      if (typeof window.helioCheckout !== 'function') throw new Error('Checkout unavailable');
-      modalCheckout.innerHTML = '';
-      window.helioCheckout(modalCheckout, {
-        paylinkId: id,
-        display: 'button',
-        primaryPaymentMethod: 'fiat',
-        showPayWithCard: true,
-        themeMode: currentTheme === 'light' ? 'light' : 'dark'
-      });
-      modalCheckout.setAttribute('data-mounted', 'true');
-    }).catch(function () {
-      modalCheckout.innerHTML = '<a class="btn btn-pay" href="' + esc(payUrl) + '" target="_blank" rel="noopener noreferrer">' +
-        icon('card') + ' ' + esc(t('modalPayButton')) + '</a>';
-    });
-  }
-
   function imageMarkup(image, alt) {
     if (!image || !image.src) return '<div class="no-image">' + icon('image') + '</div>';
     return '<img src="' + esc(image.src) + '" alt="' + esc(alt || '') + '" loading="lazy">';
@@ -337,12 +258,6 @@
     if (themeIconUse) themeIconUse.setAttribute('href', currentTheme === 'dark' ? '#i-sun' : '#i-moon');
     if (themeMeta) themeMeta.content = currentTheme === 'light' ? '#ffffff' : '#070b12';
     if (themeToggle) themeToggle.setAttribute('aria-label', currentTheme === 'light' ? t('themeToDark') : t('themeToLight'));
-    if (cardCheckoutEnabled() && modalCheckout && modal && !modal.hidden && currentProduct &&
-        currentProduct.payUrl && modalCheckout.getAttribute('data-mounted') === 'true') {
-      modalCheckout.innerHTML = '';
-      modalCheckout.removeAttribute('data-mounted');
-      mountCheckout(currentProduct.payUrl);
-    }
   }
 
   function renderChips() {
@@ -387,9 +302,6 @@
         '<div class="card-tags">' + tags + '</div>' +
         '<div class="card-actions">' +
           '<button type="button" class="btn btn-ghost" data-open="' + esc(product.id) + '">' + icon('eye') + ' ' + esc(t('details')) + '</button>' +
-          (product.payUrl
-            ? '<a class="btn btn-pay" href="' + esc(product.payUrl) + '" data-pay="' + esc(product.id) + '" target="_blank" rel="noopener noreferrer">' + icon('card') + ' ' + esc(t('cardPay')) + '</a>'
-            : '') +
           '<a class="btn btn-wa" href="' + esc(whatsapp) + '" target="_blank" rel="noopener noreferrer">' + icon('whatsapp') + ' ' + esc(t('orderNow')) + '</a>' +
         '</div>' +
       '</div>' +
@@ -437,7 +349,7 @@
     }
   }
 
-  function openModal(id, withCheckout) {
+  function openModal(id) {
     var product = null;
     for (var i = 0; i < products.length; i++) {
       if (products[i].id === id) { product = products[i]; break; }
@@ -453,16 +365,6 @@
     if (modalBadge) modalBadge.innerHTML = icon(categoryIcon(product.category)) + ' ' + esc(categoryLabel(product.category));
     if (modalDesc) modalDesc.textContent = product.description || '';
     if (modalPrice) modalPrice.innerHTML = priceMarkup(product, 'modal-price');
-    if (modalPay) {
-      modalPay.hidden = !product.payUrl || cardCheckoutEnabled();
-      if (product.payUrl) modalPay.href = product.payUrl;
-      else modalPay.removeAttribute('href');
-    }
-    if (modalCheckout) {
-      modalCheckout.hidden = true;
-      modalCheckout.innerHTML = '';
-      modalCheckout.removeAttribute('data-mounted');
-    }
     if (modalOrder) modalOrder.href = whatsapp;
     if (modalMeta) {
       modalMeta.innerHTML =
@@ -491,17 +393,12 @@
     modal.hidden = false;
     document.body.classList.add('modal-open');
     applyStaticTranslations();
-
-    if (withCheckout) checkoutProductId = product.id;
-    else if (checkoutProductId !== product.id) checkoutProductId = '';
-    if (checkoutProductId === product.id && cardCheckoutEnabled() && product.payUrl) mountCheckout(product.payUrl);
   }
 
   function closeModal() {
     if (!modal) return;
     modal.hidden = true;
     currentProduct = null;
-    resetCheckout();
     document.body.classList.remove('modal-open');
   }
 
@@ -524,14 +421,6 @@
 
   if (grid) {
     grid.addEventListener('click', function (event) {
-      var payLink = event.target.closest('[data-pay]');
-      if (payLink) {
-        if (cardCheckoutEnabled()) {
-          event.preventDefault();
-          openModal(payLink.getAttribute('data-pay'), true);
-        }
-        return;
-      }
       var button = event.target.closest('[data-open]');
       if (button) openModal(button.getAttribute('data-open'));
     });
