@@ -279,6 +279,18 @@ img { max-width: 100%; display: block; }
 }
 .btn-pay:hover { box-shadow: 0 14px 34px rgba(24, 119, 242, 0.34); }
 
+.checkout-host {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--text);
+}
+.checkout-host[hidden] { display: none; }
+.checkout-loading { color: var(--muted); font-size: 13px; line-height: 1.7; }
+.checkout-host .btn { width: 100%; margin-top: 0; }
+
 .nav-cta { padding: 10px 18px; }
 
 /* Hero */

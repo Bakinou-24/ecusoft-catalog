@@ -49,7 +49,7 @@
       pay2Title: 'استلام USDC', pay2Text: 'يستلم البائع العملة على شبكة Base أو Polygon، ويمكن تحويلها لاحقاً إلى USDT TRC20 عبر منصة صرف. شبكة Tron (TRC20) غير متاحة في صفحة الدفع الحالية.',
       pay3Title: 'بدون PayPal أو Revolut', pay3Text: 'لا نستخدم PayPal ولا Revolut كوسيلة دفع. الأسعار المعروضة بالدولار واليورو للإرشاد، والمبلغ النهائي المعتمد هو ما يظهر في صفحة الدفع.',
       payNoteTitle: 'قبل الدفع:', payNoteText: 'الرابط الحالي يعرض $45 USDC على شبكة Solana ولا يحتوي خيار بطاقة بعد. بعد تفعيل Card payments في لوحة MoonPay واستلام رابط جديد سيظهر زر الدفع بالبطاقة تلقائياً. تأكد دائماً من اسم المنتج والمبلغ، ثم أرسل الإيصال على واتساب لتأكيد التفعيل يدوياً.',
-      cardPay: 'ادفع عبر MoonPay', modalPayButton: 'افتح صفحة الدفع', priceLabel: 'السعر', approximate: 'تقريباً',
+      cardPay: 'ادفع عبر MoonPay', modalPayButton: 'افتح صفحة الدفع', checkoutLoading: 'جارٍ تجهيز الدفع…', priceLabel: 'السعر', approximate: 'تقريباً',
       legalKicker: 'Legal / 04', legalTitle: 'الشروط والسياسات', legalText: 'معلومات واضحة قبل إتمام الطلب أو الدفع.',
       termsTitle: 'شروط البيع', termsText: 'البرمجيات تُستخدم وفق ترخيصها الأصلي. يرجى التأكد من توافق الإصدار مع معداتك قبل الطلب. يتم تأكيد التوفر والتفعيل يدوياً عبر واتساب بعد الدفع.',
       refundTitle: 'الاسترجاع', refundText: 'لا استرجاع بعد تسليم ملفات التفعيل أو المفاتيح، إلا في حال ثبوت عدم تطابق المنتج مع ما تم الاتفاق عليه كتابياً عبر واتساب قبل الدفع.',
@@ -94,7 +94,7 @@
       pay2Title: 'Receive USDC', pay2Text: 'The seller receives the funds on Base or Polygon and can convert them later to USDT TRC20 through an exchange. The Tron (TRC20) network is not available on the current checkout.',
       pay3Title: 'No PayPal or Revolut', pay3Text: 'We do not use PayPal or Revolut as a payment method. USD and EUR prices are indicative; the final amount is the one shown on the checkout page.',
       payNoteTitle: 'Before you pay:', payNoteText: 'The current link shows $45 USDC on Solana and does not offer a card option yet. After Card payments is enabled in MoonPay and a new link is provided, the card button will appear automatically. Always check the product name and amount, then send the receipt on WhatsApp for manual activation.',
-      cardPay: 'Pay via MoonPay', modalPayButton: 'Open checkout', priceLabel: 'Price', approximate: 'approx.',
+      cardPay: 'Pay via MoonPay', modalPayButton: 'Open checkout', checkoutLoading: 'Preparing checkout…', priceLabel: 'Price', approximate: 'approx.',
       legalKicker: 'Legal / 04', legalTitle: 'Terms & policies', legalText: 'Clear information before you order or pay.',
       termsTitle: 'Terms of sale', termsText: 'Software is used under its original licence. Please confirm the version works with your equipment before ordering. Availability and activation are confirmed manually on WhatsApp after payment.',
       refundTitle: 'Refunds', refundText: 'No refund after activation files or keys are delivered, unless the product does not match what was agreed in writing on WhatsApp before payment.',
@@ -124,6 +124,7 @@
   var modalMeta = document.getElementById('modalMeta');
   var modalThumbs = document.getElementById('modalThumbs');
   var modalPrice = document.getElementById('modalPrice');
+  var modalCheckout = document.getElementById('modalCheckout');
   var modalPay = document.getElementById('modalPay');
   var modalOrder = document.getElementById('modalOrder');
   var langToggle = document.getElementById('langToggle');
@@ -138,6 +139,8 @@
   var currentImage = 0;
   var currentLang = 'ar';
   var currentTheme = 'dark';
+  var checkoutProductId = '';
+  var checkoutLoading = null;
 
   function store(key, value) {
     try {
@@ -218,6 +221,66 @@
       '<span>' + esc(t('approximate')) + ' ' + esc(eurPrice(product)) + '</span></div>';
   }
 
+  function paylinkIdFromUrl(url) {
+    try {
+      var parts = new URL(String(url || '')).pathname.split('/').filter(Boolean);
+      return parts[parts.length - 1] || '';
+    } catch (e) { return ''; }
+  }
+
+  function cardCheckoutEnabled() {
+    return payment.cardEnabled === true;
+  }
+
+  function loadCheckoutScript() {
+    if (typeof window.helioCheckout === 'function') return Promise.resolve();
+    if (checkoutLoading) return checkoutLoading;
+    var src = payment.embedScript || 'https://embed.hel.io/assets/index-v1.js';
+    // Only the official MoonPay embed URL may ever be injected into this page.
+    if (src !== 'https://embed.hel.io/assets/index-v1.js') return Promise.reject(new Error('Unsupported checkout script'));
+    checkoutLoading = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = function () { checkoutLoading = null; resolve(); };
+      script.onerror = function () { checkoutLoading = null; reject(new Error('Checkout script failed to load')); };
+      document.head.appendChild(script);
+    });
+    return checkoutLoading;
+  }
+
+  function resetCheckout() {
+    checkoutProductId = '';
+    if (!modalCheckout) return;
+    modalCheckout.hidden = true;
+    modalCheckout.innerHTML = '';
+    modalCheckout.removeAttribute('data-mounted');
+  }
+
+  function mountCheckout(payUrl) {
+    if (!modalCheckout || !payUrl) return;
+    var id = paylinkIdFromUrl(payUrl) || payment.paylinkId || '';
+    if (!id) return;
+    modalCheckout.hidden = false;
+    if (modalCheckout.getAttribute('data-mounted') === 'true') return;
+    modalCheckout.innerHTML = '<span class="checkout-loading">' + esc(t('checkoutLoading')) + '</span>';
+    loadCheckoutScript().then(function () {
+      if (typeof window.helioCheckout !== 'function') throw new Error('Checkout unavailable');
+      modalCheckout.innerHTML = '';
+      window.helioCheckout(modalCheckout, {
+        paylinkId: id,
+        display: 'button',
+        primaryPaymentMethod: 'fiat',
+        showPayWithCard: true,
+        themeMode: currentTheme === 'light' ? 'light' : 'dark'
+      });
+      modalCheckout.setAttribute('data-mounted', 'true');
+    }).catch(function () {
+      modalCheckout.innerHTML = '<a class="btn btn-pay" href="' + esc(payUrl) + '" target="_blank" rel="noopener noreferrer">' +
+        icon('card') + ' ' + esc(t('modalPayButton')) + '</a>';
+    });
+  }
+
   function imageMarkup(image, alt) {
     if (!image || !image.src) return '<div class="no-image">' + icon('image') + '</div>';
     return '<img src="' + esc(image.src) + '" alt="' + esc(alt || '') + '" loading="lazy">';
@@ -276,6 +339,12 @@
     if (themeIconUse) themeIconUse.setAttribute('href', currentTheme === 'dark' ? '#i-sun' : '#i-moon');
     if (themeMeta) themeMeta.content = currentTheme === 'light' ? '#ffffff' : '#070b12';
     if (themeToggle) themeToggle.setAttribute('aria-label', currentTheme === 'light' ? t('themeToDark') : t('themeToLight'));
+    if (cardCheckoutEnabled() && modalCheckout && modal && !modal.hidden && currentProduct &&
+        currentProduct.payUrl && modalCheckout.getAttribute('data-mounted') === 'true') {
+      modalCheckout.innerHTML = '';
+      modalCheckout.removeAttribute('data-mounted');
+      mountCheckout(currentProduct.payUrl);
+    }
   }
 
   function renderChips() {
@@ -321,7 +390,7 @@
         '<div class="card-actions">' +
           '<button type="button" class="btn btn-ghost" data-open="' + esc(product.id) + '">' + icon('eye') + ' ' + esc(t('details')) + '</button>' +
           (product.payUrl
-            ? '<a class="btn btn-pay" href="' + esc(product.payUrl) + '" target="_blank" rel="noopener noreferrer">' + icon('card') + ' ' + esc(t('cardPay')) + '</a>'
+            ? '<a class="btn btn-pay" href="' + esc(product.payUrl) + '" data-pay="' + esc(product.id) + '" target="_blank" rel="noopener noreferrer">' + icon('card') + ' ' + esc(t('cardPay')) + '</a>'
             : '') +
           '<a class="btn btn-wa" href="' + esc(whatsapp) + '" target="_blank" rel="noopener noreferrer">' + icon('whatsapp') + ' ' + esc(t('orderNow')) + '</a>' +
         '</div>' +
@@ -370,7 +439,7 @@
     }
   }
 
-  function openModal(id) {
+  function openModal(id, withCheckout) {
     var product = null;
     for (var i = 0; i < products.length; i++) {
       if (products[i].id === id) { product = products[i]; break; }
@@ -387,9 +456,14 @@
     if (modalDesc) modalDesc.textContent = product.description || '';
     if (modalPrice) modalPrice.innerHTML = priceMarkup(product, 'modal-price');
     if (modalPay) {
-      modalPay.hidden = !product.payUrl;
+      modalPay.hidden = !product.payUrl || cardCheckoutEnabled();
       if (product.payUrl) modalPay.href = product.payUrl;
       else modalPay.removeAttribute('href');
+    }
+    if (modalCheckout) {
+      modalCheckout.hidden = true;
+      modalCheckout.innerHTML = '';
+      modalCheckout.removeAttribute('data-mounted');
     }
     if (modalOrder) modalOrder.href = whatsapp;
     if (modalMeta) {
@@ -419,12 +493,17 @@
     modal.hidden = false;
     document.body.classList.add('modal-open');
     applyStaticTranslations();
+
+    if (withCheckout) checkoutProductId = product.id;
+    else if (checkoutProductId !== product.id) checkoutProductId = '';
+    if (checkoutProductId === product.id && cardCheckoutEnabled() && product.payUrl) mountCheckout(product.payUrl);
   }
 
   function closeModal() {
     if (!modal) return;
     modal.hidden = true;
     currentProduct = null;
+    resetCheckout();
     document.body.classList.remove('modal-open');
   }
 
@@ -447,6 +526,14 @@
 
   if (grid) {
     grid.addEventListener('click', function (event) {
+      var payLink = event.target.closest('[data-pay]');
+      if (payLink) {
+        if (cardCheckoutEnabled()) {
+          event.preventDefault();
+          openModal(payLink.getAttribute('data-pay'), true);
+        }
+        return;
+      }
       var button = event.target.closest('[data-open]');
       if (button) openModal(button.getAttribute('data-open'));
     });
