@@ -178,12 +178,6 @@ img { max-width: 100%; display: block; }
   display: block;
 }
 
-.hero-logo {
-  width: min(280px, 70%);
-  height: auto;
-  margin-bottom: 20px;
-}
-
 .footer-logo {
   width: 132px;
   height: auto;
@@ -309,36 +303,8 @@ img { max-width: 100%; display: block; }
   gap: 64px;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  padding: 7px 14px;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: rgba(34, 211, 238, 0.06);
-  color: var(--accent-text);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .2px;
-}
-
-.pulse {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent-2);
-  box-shadow: 0 0 0 0 rgba(163, 230, 53, .7);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  70% { box-shadow: 0 0 0 9px rgba(163, 230, 53, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(163, 230, 53, 0); }
-}
-
 .hero h1 {
-  margin: 22px 0 18px;
+  margin: 0 0 18px;
   font-size: clamp(38px, 5.1vw, 66px);
   line-height: 1.13;
   letter-spacing: -1.5px;
@@ -1023,7 +989,6 @@ img { max-width: 100%; display: block; }
   .nav a { padding: 12px 4px; border-bottom: 1px solid var(--line); }
 
   .brand-logo { width: 118px; }
-  .hero-logo { width: min(230px, 80%); }
   .hero h1 { letter-spacing: -.8px; }
   .hero-copy > p { font-size: 15px; }
   .float-card { display: none; }
